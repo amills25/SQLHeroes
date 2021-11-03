@@ -38,5 +38,10 @@
     -   DELETE an enemy
         -   DELETE in Postman
 
+    -   Each of these are a case inside a switch.
+
 4. In addition to your four chosen CRUD operations, you should also display all superheroes as a list showing their Name and About Me info.
-    -   
+    -   Also be able to READ all Heroes, showing their Name, About Me, and Abilities
+        -   GET in Postman
+    
+    -   This is a function that runs inside the IF, but outside the SWITCH.
