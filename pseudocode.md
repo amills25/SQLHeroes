@@ -1,7 +1,7 @@
 # PSEUDOCODE FOR SQL HEROES
 
 ## API Session with Ian 11/2
-
+ 
 ### What is an API?
     -   Database
         -   MySQL
