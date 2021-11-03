@@ -60,8 +60,21 @@ function readAboutHeroes()
 
 function readAllHeroes()
 {
-    //output heroes from the array
+    $sql = "SELECT heroes.name, heroes.about_me, GROUP_CONCAT(ability_type.ability separator ', ') AS abilities
+    FROM heroes
+    INNER JOIN abilities ON abilities.hero_id = heroes.id  
+    INNER JOIN ability_type ON ability_type.id = abilities.ability_id
+    GROUP BY heroes.name";
 
+    global $conn;
+    $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            echo $row['id'] . "Name: " . $row['name'] . ". <br/>About Me: " . $row['about_me'] . "<br/>Abilities: " . json_encode($row['abilities']) . "<br/><br/>";
+        }
+    } else {
+        echo "Error: " . $sql . "<br/>" . $conn->error;
+    }
 }
 
 //UPDATE
@@ -107,6 +120,9 @@ if (isset($_GET['route'])) {
         case 'read':
             readAboutHeroes();
             break;
+        case 'readAll':
+            readAllHeroes();
+            break;
         case 'update':
             updateAbility($_GET['id'], $_GET['ability_id']);
             break;
@@ -117,7 +133,6 @@ if (isset($_GET['route'])) {
             echo 'ERROR 404: route not found.';
             break;
     }
-    // readAllHeroes();
 } else {
     echo 'Welcome to Herodex!';
 }
