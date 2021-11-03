@@ -13,7 +13,7 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-//create
+//CREATE
 function createHero($request)
 {
     if (!isset($request['name'])) {
@@ -42,7 +42,7 @@ function createHero($request)
     }
 }
 
-//read -- WHY IS THIS BROKEN
+//READ
 function readAboutHeroes()
 {
     $sql = "SELECT name, about_me FROM heroes";
@@ -51,10 +51,10 @@ function readAboutHeroes()
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
-            echo $row['id'] . " - Name: " . $row['name'] . ". - About Me: " . $row['about_me'] . "<br/>";
+            echo $row['id'] . "Name: " . $row['name'] . ". <br/>About Me: " . $row['about_me'] . "<br/><br/>";
         }
     } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
+        echo "Error: " . $sql . "<br/>" . $conn->error;
     }
 }
 
@@ -64,7 +64,7 @@ function readAllHeroes()
 
 }
 
-//update
+//UPDATE
 function updateHero($id, $tagline)
 {
     $sql = "UPDATE heroes SET tagline='$tagline' WHERE id=$id";
@@ -77,14 +77,14 @@ function updateHero($id, $tagline)
     }
 }
 
-//delete
+//DELETE
 function deleteHero($id)
 {
     $sql = "DELETE FROM heroes WHERE id='$id'";
 
     global $conn;
     if ($conn->query($sql) === TRUE) {
-        echo "Record deleted successfully";
+        echo "Record id:$id deleted successfully";
     } else {
         echo "Error deleting record: " . $conn->error;
     }
@@ -102,7 +102,7 @@ if (isset($_GET['route'])) {
             //users();
             break;
         case 'delete':
-            deleteHero($id);
+            deleteHero($_GET['id']);
             break;
         default:
             echo 'ERROR 404: route not found.';
