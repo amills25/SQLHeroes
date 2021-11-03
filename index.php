@@ -65,9 +65,18 @@ function readAllHeroes()
 }
 
 //UPDATE
-function updateHero($id, $tagline)
+function updateAbility($id, $ability_id)
 {
-    $sql = "UPDATE heroes SET tagline='$tagline' WHERE id=$id";
+    if (!isset($request['id'])) {
+        echo 'ERROR 422: unprocessable entity, expecting id.';
+        return;
+    }
+    if (!isset($request['ability_id'])) {
+        echo 'ERROR 422: unprocessable entity, expecting ability id.';
+        return;
+    }
+
+    $sql = "UPDATE abilities SET ability_id='$ability_id' WHERE id=$id";
 
     global $conn;
     if ($conn->query($sql) === TRUE) {
@@ -99,7 +108,7 @@ if (isset($_GET['route'])) {
             readAboutHeroes();
             break;
         case 'update':
-            //users();
+            updateAbility($_GET['id'], $_GET['ability_id']);
             break;
         case 'delete':
             deleteHero($_GET['id']);
