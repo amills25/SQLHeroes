@@ -31,10 +31,12 @@
 3. Decide on a minimum of four CRUD operations you wish to implement (at least one operation for Create, Read, Update, & Delete) - document this in your README.md
     -   CREATE a new hero
         -   POST in Postman
-    -   READ list of all heroes, names, and bio
+        -   Error check for each hero attribute
+    -   READ list of all heroes: names, and about me
         -   GET in Postman
     -   UPDATE an ability
         -   PUT in Postman
+        -   Error check for valid input
     -   DELETE an enemy
         -   DELETE in Postman
 

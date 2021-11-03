@@ -42,13 +42,35 @@ function createHero($request)
     }
 }
 
+//read -- WHY IS THIS BROKEN
+function readAboutHeroes()
+{
+    // $name = $request['name'];
+    // $about_me = $request['about_me'];
+    $sql = "SELECT name, about_me FROM heroes";
+    // echo $sql;
+    // $sql = 'SELECT * FROM heroes';
+
+    global $conn;
+    if ($conn->query($sql) === TRUE) {
+        echo "Read about heroes successfully";
+    } else {
+        echo "Error: " . $sql . "<br>" . $conn->error;
+    }
+}
+function readAllHeroes()
+{
+    //output heroes from the array
+
+}
+
 if (isset($_GET['route'])) {
     switch ($_GET['route']) {
         case 'create':
             createHero($_POST);
             break;
         case 'read':
-            //users();
+            readAboutHeroes();
             break;
         case 'update':
             //users();
@@ -60,6 +82,7 @@ if (isset($_GET['route'])) {
             echo 'ERROR 404: route not found.';
             break;
     }
+    // readAllHeroes();
 } else {
     echo 'Welcome to Herodex!';
 }
