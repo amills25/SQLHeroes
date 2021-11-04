@@ -93,17 +93,19 @@ function readAllHeroes()
 }
 
 //UPDATE
-function updateAbility($id, $ability_id)
+function updateAbility($request)
 {
-    if (!isset($id)) {
+    if (!isset($request['id'])) {
         echo 'ERROR 422: unprocessable entity, expecting id.';
         return;
     }
-    if (!isset($ability_id)) {
+    if (!isset($request['ability_id'])) {
         echo 'ERROR 422: unprocessable entity, expecting ability id.';
         return;
     }
 
+    $id = $request['id'];
+    $ability_id = $request['ability_id'];
     $sql = "UPDATE abilities SET ability_id='$ability_id' WHERE id=$id";
 
     global $conn;
@@ -115,8 +117,14 @@ function updateAbility($id, $ability_id)
 }
 
 //DELETE
-function deleteHero($id)
+function deleteHero($request)
 {
+    if (!isset($request['id'])) {
+        echo 'ERROR 422: unprocessable entity, expecting id.';
+        return;
+    }
+
+    $id = $request['id'];
     $sql = "DELETE FROM heroes WHERE id='$id'";
 
     global $conn;
@@ -139,10 +147,10 @@ if (isset($_GET['route'])) {
             readAllHeroes();
             break;
         case 'update':
-            updateAbility($_GET['id'], $_GET['ability_id']);
+            updateAbility($_GET);
             break;
         case 'delete':
-            deleteHero($_GET['id']);
+            deleteHero($_GET);
             break;
         default:
             echo 'ERROR 404: route not found.';

@@ -37,7 +37,7 @@
     -   READ list of all heroes: names, and about me
         -   GET in Postman
     -   UPDATE an ability
-        -   PUT in Postman
+        -   PATCH in Postman
         -   Error check for valid input
     -   DELETE an enemy
         -   DELETE in Postman
