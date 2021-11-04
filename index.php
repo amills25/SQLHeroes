@@ -34,11 +34,26 @@ function createHero($request)
     $biography = $request['biography'];
     $sql = "INSERT INTO heroes (name, about_me, biography) VALUES ('$name', '$about_me', '$biography')";
 
+    $hero_id = -1;
     global $conn;
     if ($conn->query($sql) === TRUE) {
-        echo "New record created successfully";
+        $hero_id = $conn->insert_id;
+        echo "New hero created successfully. ";
     } else {
         echo "Error: " . $sql . "<br>" . $conn->error;
+    }
+
+    if (isset($request['ability_id'])) {
+        $ability_id = $request['ability_id'];
+        $sql2 = "INSERT INTO abilities (hero_id, ability_id) VALUES ('$hero_id', '$ability_id')";
+    } else {
+        echo 'ERROR 422: unprocessable entity, expecting biography.';
+    }
+
+    if ($conn->query($sql2) === TRUE) {
+        echo "New ability also created successfully.";
+    } else {
+        echo "Error: " . $sql2 . "<br>" . $conn->error;
     }
 }
 
