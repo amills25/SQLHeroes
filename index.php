@@ -80,11 +80,11 @@ function readAllHeroes()
 //UPDATE
 function updateAbility($id, $ability_id)
 {
-    if (!isset($request['id'])) {
+    if (!isset($id)) {
         echo 'ERROR 422: unprocessable entity, expecting id.';
         return;
     }
-    if (!isset($request['ability_id'])) {
+    if (!isset($ability_id)) {
         echo 'ERROR 422: unprocessable entity, expecting ability id.';
         return;
     }
