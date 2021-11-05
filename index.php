@@ -16,16 +16,20 @@ if ($conn->connect_error) {
 //CREATE
 function createHero($request)
 {
-    if (!isset($request['name'])) {
-        echo 'ERROR 422: unprocessable entity, expecting name.';
-        return;
+    $e_val = '';
+    if (!isset($_POST["name"])) {
+        $e_val .= 'name';
     }
-    if (!isset($request['about_me'])) {
-        echo 'ERROR 422: unprocessable entity, expecting about me.';
-        return;
+
+    if (!isset($_POST["about_me"])) {
+        $e_val .= 'about_me';
     }
-    if (!isset($request['biography'])) {
-        echo 'ERROR 422: unprocessable entity, expecting biography.';
+
+    if (!isset($_POST["biography"])) {
+        $e_val .= 'biography';
+    }
+    if (strlen($e_val) > 0) {
+        echo "422 error, $e_val is not set";
         return;
     }
 
@@ -95,12 +99,15 @@ function readAllHeroes()
 //UPDATE
 function updateAbility($request)
 {
-    if (!isset($request['id'])) {
-        echo 'ERROR 422: unprocessable entity, expecting id.';
-        return;
+    $e_val = '';
+    if (!isset($_POST["id"])) {
+        $e_val .= 'id';
     }
-    if (!isset($request['ability_id'])) {
-        echo 'ERROR 422: unprocessable entity, expecting ability id.';
+    if (!isset($_POST["ability_id"])) {
+        $e_val .= 'ability_id';
+    }
+    if (strlen($e_val) > 0) {
+        echo "422 error, $e_val is not set";
         return;
     }
 
