@@ -66,7 +66,7 @@ function readAboutHeroes()
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
-            echo $row['id'] . "Name: " . $row['name'] . ". <br/>About Me: " . $row['about_me'] . "<br/><br/>";
+            echo $row['id'] . "Name: " . $row['name'] . "<br/>About Me: " . $row['about_me'] . "<br/><br/>";
         }
     } else {
         echo "Error: " . $sql . "<br/>" . $conn->error;
@@ -85,7 +85,7 @@ function readAllHeroes()
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
-            echo $row['id'] . "Name: " . $row['name'] . ". <br/>About Me: " . $row['about_me'] . "<br/>Abilities: " . json_encode($row['abilities']) . "<br/><br/>";
+            echo $row['id'] . "Name: " . $row['name'] . "<br/>About Me: " . $row['about_me'] . "<br/>Abilities: " . json_encode($row['abilities']) . "<br/><br/>";
         }
     } else {
         echo "Error: " . $sql . "<br/>" . $conn->error;
